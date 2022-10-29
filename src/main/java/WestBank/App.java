@@ -3,7 +3,7 @@ package WestBank;
 public class App {
 
     public static void main(String[] args) {
-        Menu menu= new Menu ();
-        menu.displayMenu ();
+        Menu menu= new Menu();
+        menu.displayMenu();
     }
 }
