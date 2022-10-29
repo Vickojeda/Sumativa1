@@ -42,7 +42,6 @@ class Menu {
                         System.out.println("Selecciona sólo números del 1 al 6");
                         break;
                 }
-
             } catch (InputMismatchException error) {
                 System.out.println("Selecciona sólo números del 1 al 6");
                 sn.next();
