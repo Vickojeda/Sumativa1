@@ -7,8 +7,8 @@ class Menu {
 
     void displayMenu() {
         Scanner sn = new Scanner(System.in);
-
         boolean salir = false;
+        
         while (!salir) {
             System.out.println("Opción 1: Registrar cliente");
             System.out.println("Opción 2: Ver datos de cliente");
@@ -41,7 +41,6 @@ class Menu {
                     default:
                         System.out.println("Selecciona sólo números del 1 al 6");
                         break;
-
                 }
 
             } catch (InputMismatchException error) {
@@ -49,7 +48,5 @@ class Menu {
                 sn.next();
             }
         }
-
     }
-
 }
