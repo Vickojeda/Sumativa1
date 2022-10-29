@@ -41,7 +41,6 @@ class Menu {
                     default:
                         System.out.println("Selecciona sólo números del 1 al 6");
                         break;
-
                 }
 
             } catch (InputMismatchException error) {
@@ -49,7 +48,5 @@ class Menu {
                 sn.next();
             }
         }
-
     }
-
 }
