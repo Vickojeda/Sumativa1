@@ -1,25 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package WestBank.views;
 
+import WestBank.Cliente;
+import WestBank.utils.ValidacionesCliente;
+import WestBank.utils.ValidacionesCuentaCorriente;
 import java.awt.Color;
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author PROFESOR 16
- */
 public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
+
+    List<Cliente> clientes = new ArrayList<>();
+    ValidacionesCliente validacionCliente = new ValidacionesCliente();
+    ValidacionesCuentaCorriente validacionCuentaCorriente = new ValidacionesCuentaCorriente();
 
     /**
      * Creates new form NewJInternalDeposito
      */
-    public JInternalFrameDeposito() {
+    public JInternalFrameDeposito(List<Cliente> clientes) {
         initComponents();
         FrameDeposito.setBorder(BorderFactory.createLineBorder(Color.black));
         FrameDeposito.setSize(200, 200);
+        this.clientes = clientes;
     }
 
     /**
@@ -35,30 +39,49 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jDepositoRut = new javax.swing.JTextField();
         jButtonDepositoBuscar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelTipoCuenta = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jDepositoMonto = new javax.swing.JTextField();
         jButtonDepositar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabelMensajeOK = new javax.swing.JLabel();
+        jTextFieldSaldo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         jLabel1.setText("Ingrese rut de cliente");
 
         jButtonDepositoBuscar.setText("Buscar");
+        jButtonDepositoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDepositoBuscarActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Cuenta de Ahorro");
+        jLabelTipoCuenta.setText("Cuenta de Ahorro");
 
         jLabel3.setText("Saldo:");
 
         jLabel4.setText("Ingrese monto que desea depositar");
 
+        jDepositoMonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDepositoMontoActionPerformed(evt);
+            }
+        });
+
         jButtonDepositar.setText("Depositar");
+        jButtonDepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDepositarActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("¡Deposito realizado correctamente!");
-
-        jTextField1.setEditable(false);
+        jTextFieldSaldo.setEditable(false);
+        jTextFieldSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSaldoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout FrameDepositoLayout = new javax.swing.GroupLayout(FrameDeposito);
         FrameDeposito.setLayout(FrameDepositoLayout);
@@ -68,17 +91,17 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(FrameDepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTipoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(FrameDepositoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1))
+                        .addComponent(jTextFieldSaldo))
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDepositoMonto)
                     .addComponent(jButtonDepositoBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDepositoRut)
                     .addComponent(jButtonDepositar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelMensajeOK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         FrameDepositoLayout.setVerticalGroup(
@@ -91,11 +114,11 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonDepositoBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(jLabelTipoCuenta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(FrameDepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -103,8 +126,8 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonDepositar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(jLabelMensajeOK)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jLabel6.setText("Buscar Cliente");
@@ -133,6 +156,59 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonDepositoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDepositoBuscarActionPerformed
+        jLabelMensajeOK.setText("");
+        jDepositoMonto.setText("");
+        String rut = jDepositoRut.getText();
+        String mensajeError = validacionCliente.validacionRutBusqueda(rut);
+        if ("".equals(mensajeError)) {
+            boolean existeCliente = false;
+            for (Cliente cliente : clientes) {
+                jLabelTipoCuenta.setText(cliente.getCuentaBancaria().getTipo());
+                jTextFieldSaldo.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
+                existeCliente = true;
+            }
+            if (!existeCliente) {
+                JOptionPane.showMessageDialog(rootPane, "No existen Cliente ingresado");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, mensajeError);
+        }
+
+    }//GEN-LAST:event_jButtonDepositoBuscarActionPerformed
+
+    private void jTextFieldSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSaldoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSaldoActionPerformed
+
+    private void jButtonDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDepositarActionPerformed
+        String rut = jDepositoRut.getText();
+        String mensajeError = validacionCliente.validacionRutBusqueda(rut);
+        String monto = jDepositoMonto.getText();
+        mensajeError = mensajeError + validacionCuentaCorriente.validarMontoDeposito(monto);
+        
+        if ("".equals(mensajeError)) {
+            boolean existeCliente = false;
+            for (Cliente cliente : clientes) {
+                int nuevoSaldo = cliente.getCuentaBancaria().getSaldo() + parseInt(jDepositoMonto.getText());
+                cliente.getCuentaBancaria().setSaldo(nuevoSaldo);
+                existeCliente = true;
+                jTextFieldSaldo.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
+                jDepositoMonto.setText("");
+                jLabelMensajeOK.setText("¡Deposito realizado correctamente!");
+            }
+            if (!existeCliente) {
+                JOptionPane.showMessageDialog(rootPane, "No existen Cliente ingresado");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, mensajeError);
+        }
+    }//GEN-LAST:event_jButtonDepositarActionPerformed
+
+    private void jDepositoMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDepositoMontoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDepositoMontoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FrameDeposito;
@@ -141,11 +217,11 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jDepositoMonto;
     private javax.swing.JTextField jDepositoRut;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabelMensajeOK;
+    private javax.swing.JLabel jLabelTipoCuenta;
+    private javax.swing.JTextField jTextFieldSaldo;
     // End of variables declaration//GEN-END:variables
 }

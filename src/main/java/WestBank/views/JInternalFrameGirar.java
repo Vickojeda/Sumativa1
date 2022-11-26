@@ -1,25 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package WestBank.views;
 
+import WestBank.Cliente;
+import WestBank.utils.ValidacionesCliente;
+import WestBank.utils.ValidacionesCuentaCorriente;
 import java.awt.Color;
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author PROFESOR 16
- */
 public class JInternalFrameGirar extends javax.swing.JInternalFrame {
+
+    List<Cliente> clientes = new ArrayList<>();
+    ValidacionesCliente validacionCliente = new ValidacionesCliente();
+    ValidacionesCuentaCorriente validacionCuentaCorriente = new ValidacionesCuentaCorriente();
 
     /**
      * Creates new form JInternalFrameGirar
      */
-    public JInternalFrameGirar() {
+    public JInternalFrameGirar(List<Cliente> clientes) {
         initComponents();
         JPanelGiro.setBorder(BorderFactory.createLineBorder(Color.black));
         JPanelGiro.setSize(200, 200);
+        this.clientes = clientes;
     }
 
     /**
@@ -35,20 +39,25 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jGirarRut = new javax.swing.JTextField();
         jButtonGirarBuscar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelTipoCuenta = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jGirarMonto = new javax.swing.JTextField();
         jButtonGirar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabelMensajeOK = new javax.swing.JLabel();
+        jTextSaldoGiro = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setText("Ingrese rut de cliente");
 
         jButtonGirarBuscar.setText("Buscar");
+        jButtonGirarBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGirarBuscarActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Cuenta de Ahorro");
+        jLabelTipoCuenta.setText("Cuenta de Ahorro");
 
         jLabel4.setText("Saldo:");
 
@@ -61,9 +70,7 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("¡Giro realizado correctamente!");
-
-        jTextField1.setEditable(false);
+        jTextSaldoGiro.setEditable(false);
 
         javax.swing.GroupLayout JPanelGiroLayout = new javax.swing.GroupLayout(JPanelGiro);
         JPanelGiro.setLayout(JPanelGiroLayout);
@@ -77,18 +84,18 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jGirarRut)
                             .addComponent(jButtonGirarBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTipoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(JPanelGiroLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1))
+                                .addComponent(jTextSaldoGiro))
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(JPanelGiroLayout.createSequentialGroup()
                         .addGroup(JPanelGiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButtonGirar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                             .addComponent(jGirarMonto, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelMensajeOK, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 56, Short.MAX_VALUE))))
         );
         JPanelGiroLayout.setVerticalGroup(
@@ -101,11 +108,11 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonGirarBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(jLabelTipoCuenta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JPanelGiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextSaldoGiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,8 +120,8 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonGirar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jLabelMensajeOK)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Buscar Cliente");
@@ -144,8 +151,52 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGirarActionPerformed
-        // TODO add your handling code here:
+        String rut = jGirarRut.getText();
+        String mensajeError = validacionCliente.validacionRutBusqueda(rut);
+        String monto = jGirarMonto.getText();
+        mensajeError = mensajeError + validacionCuentaCorriente.validarMontoDeposito(monto);
+
+        if ("".equals(mensajeError)) {
+            boolean existeCliente = false;
+            for (Cliente cliente : clientes) {
+                if (cliente.getCuentaBancaria().getSaldo() < parseInt(jGirarMonto.getText())) {
+                    JOptionPane.showMessageDialog(rootPane, "El giro supera el monto");
+                } else {
+                    int nuevoSaldo = cliente.getCuentaBancaria().getSaldo() - parseInt(jGirarMonto.getText());
+                    cliente.getCuentaBancaria().setSaldo(nuevoSaldo);
+                    existeCliente = true;
+                    jTextSaldoGiro.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
+                    jGirarMonto.setText("");
+                    jLabelMensajeOK.setText("¡Giro realizado correctamente!");
+                }
+            }
+            if (!existeCliente) {
+                JOptionPane.showMessageDialog(rootPane, "No existen Cliente ingresado");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, mensajeError);
+        }
     }//GEN-LAST:event_jButtonGirarActionPerformed
+
+    private void jButtonGirarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGirarBuscarActionPerformed
+        jLabelMensajeOK.setText("");
+        jGirarMonto.setText("");
+        String rut = jGirarRut.getText();
+        String mensajeError = validacionCliente.validacionRutBusqueda(rut);
+        if ("".equals(mensajeError)) {
+            boolean existeCliente = false;
+            for (Cliente cliente : clientes) {
+                jLabelTipoCuenta.setText(cliente.getCuentaBancaria().getTipo());
+                jTextSaldoGiro.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
+                existeCliente = true;
+            }
+            if (!existeCliente) {
+                JOptionPane.showMessageDialog(rootPane, "No existen Cliente ingresado");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, mensajeError);
+        }
+    }//GEN-LAST:event_jButtonGirarBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -156,10 +207,10 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jGirarRut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabelMensajeOK;
+    private javax.swing.JLabel jLabelTipoCuenta;
+    private javax.swing.JTextField jTextSaldoGiro;
     // End of variables declaration//GEN-END:variables
 }

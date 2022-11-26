@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package WestBank.views;
 
 import WestBank.Cliente;
@@ -12,10 +8,6 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author PROFESOR 16
- */
 public class JInternalFrameBuscar extends javax.swing.JInternalFrame {
 
     List<Cliente> clientes = new ArrayList<>();

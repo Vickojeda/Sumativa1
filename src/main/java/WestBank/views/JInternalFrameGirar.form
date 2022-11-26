@@ -55,11 +55,11 @@
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jGirarRut" alignment="0" max="32767" attributes="0"/>
                               <Component id="jButtonGirarBuscar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                              <Component id="jLabelTipoCuenta" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField1" max="32767" attributes="0"/>
+                                  <Component id="jTextSaldoGiro" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jLabel5" pref="182" max="32767" attributes="0"/>
                           </Group>
@@ -69,7 +69,7 @@
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jButtonGirar" alignment="0" pref="184" max="32767" attributes="0"/>
                               <Component id="jGirarMonto" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel6" alignment="1" min="-2" pref="173" max="-2" attributes="0"/>
+                              <Component id="jLabelMensajeOK" alignment="1" min="-2" pref="173" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
                       </Group>
@@ -87,11 +87,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonGirarBuscar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTipoCuenta" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextSaldoGiro" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -100,8 +100,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonGirar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Component id="jLabelMensajeOK" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,8 +118,11 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGirarBuscarActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="jLabelTipoCuenta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cuenta de Ahorro"/>
           </Properties>
@@ -144,12 +147,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGirarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#xa1;Giro realizado correctamente!"/>
-          </Properties>
+        <Component class="javax.swing.JLabel" name="jLabelMensajeOK">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="jTextSaldoGiro">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>

@@ -51,18 +51,18 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="107" max="-2" attributes="0"/>
+                      <Component id="jLabelTipoCuenta" min="-2" pref="107" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField1" max="32767" attributes="0"/>
+                          <Component id="jTextFieldSaldo" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                       <Component id="jDepositoMonto" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonDepositoBuscar" alignment="0" max="32767" attributes="0"/>
                       <Component id="jDepositoRut" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonDepositar" max="32767" attributes="0"/>
-                      <Component id="jLabel5" max="32767" attributes="0"/>
+                      <Component id="jLabelMensajeOK" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
@@ -78,11 +78,11 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButtonDepositoBuscar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTipoCuenta" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldSaldo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -91,8 +91,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonDepositar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <Component id="jLabelMensajeOK" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,8 +109,11 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDepositoBuscarActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="jLabelTipoCuenta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cuenta de Ahorro"/>
           </Properties>
@@ -126,21 +129,27 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jDepositoMonto">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jDepositoMontoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonDepositar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Depositar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDepositarActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#xa1;Deposito realizado correctamente!"/>
-          </Properties>
+        <Component class="javax.swing.JLabel" name="jLabelMensajeOK">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="jTextFieldSaldo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSaldoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

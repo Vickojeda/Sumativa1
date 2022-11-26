@@ -1,22 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package WestBank.views;
 
+import WestBank.Cliente;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
 
-/**
- *
- * @author PROFESOR 16
- */
 public class JInternalFrameTransferir extends javax.swing.JInternalFrame {
-
+    List<Cliente> clientes = new ArrayList<>();
     /**
      * Creates new form JInternalFrameTransferir
      */
-    public JInternalFrameTransferir() {
+    public JInternalFrameTransferir(List<Cliente> clientes) {
         initComponents();
         JPanelTransferir.setBorder(BorderFactory.createLineBorder(Color.black));
         JPanelTransferir.setSize(400, 300);

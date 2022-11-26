@@ -9,9 +9,9 @@ public class JframeMenu extends javax.swing.JFrame {
     List<Cliente> clientes = new ArrayList<>();
     JInternalFrameRegistro registro = new JInternalFrameRegistro(clientes);
     JInternalFrameBuscar buscar = new JInternalFrameBuscar(clientes);
-    JInternalFrameDeposito depositar = new JInternalFrameDeposito();
-    JInternalFrameGirar girar = new JInternalFrameGirar();
-    JInternalFrameTransferir transferir = new JInternalFrameTransferir();
+    JInternalFrameDeposito depositar = new JInternalFrameDeposito(clientes);
+    JInternalFrameGirar girar = new JInternalFrameGirar(clientes);
+    JInternalFrameTransferir transferir = new JInternalFrameTransferir(clientes);
     
     /**
      * Creates new form JframeMenu
