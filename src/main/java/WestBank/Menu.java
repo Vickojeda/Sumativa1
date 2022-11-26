@@ -50,7 +50,7 @@ class Menu {
                         System.out.println("Has seleccionado la opcion 3: Depositar");
                         try {
                             Cliente clienteEncontrado = buscarCliente();
-                            ingresarDeposito(clienteEncontrado.cuentaCorriente);
+                            //ingresarDeposito(clienteEncontrado.cuentaCorriente);
                         } catch (Exception ex) {
                             System.out.println(ex.getMessage());
                         }
@@ -59,7 +59,7 @@ class Menu {
                         System.out.println("Has seleccionado la opcion 4: Girar");
                         try {
                             Cliente clienteEncontrado = buscarCliente();
-                            girarDeposito(clienteEncontrado.cuentaCorriente);
+                            //girarDeposito(clienteEncontrado.cuentaCorriente);
                         } catch (Exception ex) {
                             System.out.println(ex.getMessage());
                         }
@@ -68,7 +68,7 @@ class Menu {
                         System.out.println("Has seleccionado la opcion 5: Consultar saldo");
                         try {
                             Cliente clienteEncontrado = buscarCliente();
-                            consultaSaldo(clienteEncontrado.cuentaCorriente);
+                           // consultaSaldo(clienteEncontrado.cuentaCorriente);
                         } catch (Exception ex) {
                             System.out.println(ex.getMessage());
                         }

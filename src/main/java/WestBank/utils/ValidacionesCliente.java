@@ -111,4 +111,10 @@ public class ValidacionesCliente {
         return mensajeError;
     }
 
+    public String validacionRutBusqueda(String rut) {
+        if (rut.length() < 11 || rut.length() > 12) {
+            return "* El rut ingresado debe tener entre 11 y 12 caracteres, incluyendo puntos y guion";
+        }
+        return "";
+    }
 }

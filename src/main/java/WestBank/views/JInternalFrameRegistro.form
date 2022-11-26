@@ -191,7 +191,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
             <StringItem index="0" value="Cuenta Corriente"/>
-            <StringItem index="1" value="Cuenta Rut"/>
+            <StringItem index="1" value="Cuenta Ahorro"/>
           </StringArray>
         </Property>
       </Properties>

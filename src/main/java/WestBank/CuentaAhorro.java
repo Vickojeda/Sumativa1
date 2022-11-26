@@ -1,8 +1,7 @@
 package WestBank;
 
-public class CuentaCorriente extends CuentaBancaria{
-    
-    public CuentaCorriente(int nroCuenta) {
+public class CuentaAhorro extends CuentaBancaria {
+    public CuentaAhorro(int nroCuenta) {
         super(nroCuenta);
     }
     
@@ -15,7 +14,7 @@ public class CuentaCorriente extends CuentaBancaria{
     void ingresarSaldo(int deposito) {
         this.saldo = deposito + this.saldo;
     }
-    
+
     @Override
     void girarDeposito(int giro) {
         this.saldo = this.saldo - giro;
@@ -29,5 +28,4 @@ public class CuentaCorriente extends CuentaBancaria{
             this.saldo += cantidad;
         }
     }
-
 }

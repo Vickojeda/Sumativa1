@@ -5,6 +5,8 @@
 package WestBank.views;
 
 import WestBank.Cliente;
+import WestBank.CuentaAhorro;
+import WestBank.CuentaBancaria;
 import WestBank.CuentaCorriente;
 import WestBank.utils.ValidacionesCliente;
 import static java.lang.Integer.parseInt;
@@ -123,7 +125,7 @@ public class JInternalFrameRegistro extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxCuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuenta Corriente", "Cuenta Rut" }));
+        jComboBoxCuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuenta Corriente", "Cuenta Ahorro" }));
         jComboBoxCuenta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxCuentaItemStateChanged(evt);
@@ -273,6 +275,15 @@ public class JInternalFrameRegistro extends javax.swing.JInternalFrame {
        if(!"".equals(mensajeError)) {
            JOptionPane.showMessageDialog(rootPane, mensajeError);
        } else {
+           CuentaBancaria cuenta;
+           if(tipoCuenta == 0) {
+               cuenta = new CuentaCorriente(parseInt(numeroCuenta));
+               cuenta.setTipo("Cuenta Corriente");
+           }else {
+               cuenta = new CuentaAhorro(parseInt(numeroCuenta));
+               cuenta.setTipo("Cuenta de Ahorro");
+           }
+           
            Cliente cliente = new Cliente(
                 rut,
                 nombre,
@@ -281,12 +292,11 @@ public class JInternalFrameRegistro extends javax.swing.JInternalFrame {
                 domicilio,
                 comuna,
                 parseInt(telefono, 10),
-                new CuentaCorriente(numeroCuenta, tipoCuenta));
+                cuenta);
            
            clientes.add(cliente);
            clearFields();
            JOptionPane.showMessageDialog(rootPane, "Cliente Ingresado");
-
        }
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 

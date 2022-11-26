@@ -5,6 +5,7 @@
 package WestBank.views;
 
 import WestBank.Cliente;
+import WestBank.utils.ValidacionesCliente;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,22 +17,26 @@ import javax.swing.JOptionPane;
  * @author PROFESOR 16
  */
 public class JInternalFrameBuscar extends javax.swing.JInternalFrame {
-List<Cliente> clientes = new ArrayList<>();
+
+    List<Cliente> clientes = new ArrayList<>();
+    ValidacionesCliente validacionCliente = new ValidacionesCliente();
+
     /**
      * Creates new form JInternalFrameBuscar
+     *
      * @param clientes
      */
     public JInternalFrameBuscar(List<Cliente> clientes) {
         initComponents();
         buscarCliente.setBorder(BorderFactory.createLineBorder(Color.black));
         buscarCliente.setSize(200, 200);
-        
+
         verDatosCliente.setBorder(BorderFactory.createLineBorder(Color.black));
         verDatosCliente.setSize(200, 200);
-        
+
         verDatosCuentaCliente.setBorder(BorderFactory.createLineBorder(Color.black));
         verDatosCuentaCliente.setSize(200, 200);
-        
+
         this.clientes = clientes;
     }
 
@@ -317,7 +322,31 @@ List<Cliente> clientes = new ArrayList<>();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarClienteActionPerformed
-        JOptionPane.showMessageDialog(rootPane, clientes.size());
+        String rut = inputRutBuscar.getText();
+        String mensajeError = validacionCliente.validacionRutBusqueda(rut);
+        if ("".equals(mensajeError)) {
+            boolean existeCliente = false;
+            for (Cliente cliente : clientes) {
+                if (cliente.getRut().equals(rut)) {
+                    jNombreCliente.setText(cliente.getNombre());
+                    jApellidoPaternoCliente.setText(cliente.getApellidoPaterno());
+                    jApellidoMaternoCliente.setText(cliente.getApellidoMaterno());
+                    jDomicilioCliente.setText(cliente.getDomicilio());
+                    jComunaCliente.setText(cliente.getComuna());
+                    jTelefonoCliente.setText(Integer.toString(cliente.getNroTelefono()));
+                    jNumeroCuentaCliente.setText(Integer.toString(cliente.getCuentaBancaria().getNroCuenta()));
+                    jTipoCuentaCliente.setText(cliente.getCuentaBancaria().getTipo());
+                    jSaldoCliente.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
+                    existeCliente = true;
+                }
+            }
+            if (!existeCliente) {
+                JOptionPane.showMessageDialog(rootPane, "No existen Clientes ingresados");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, mensajeError);
+        }
+
     }//GEN-LAST:event_jButtonBuscarClienteActionPerformed
 
     private void jDomicilioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDomicilioClienteActionPerformed

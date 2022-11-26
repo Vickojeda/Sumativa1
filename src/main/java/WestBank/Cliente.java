@@ -9,7 +9,7 @@ public class Cliente {
     String domicilio;
     String comuna;
     int nroTelefono;
-    CuentaCorriente cuentaCorriente;      
+    CuentaBancaria cuentaBancaria;      
 
     public String getRut() {
         return rut;
@@ -67,15 +67,15 @@ public class Cliente {
         this.nroTelefono = nroTelefono;
     }
 
-    public CuentaCorriente getCuentaCorriente() {
-        return cuentaCorriente;
+    public CuentaBancaria getCuentaBancaria() {
+        return cuentaBancaria;
     }
 
-    public void setCuentaCorriente(CuentaCorriente cuentaCorriente) {
-        this.cuentaCorriente = cuentaCorriente;
+    public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
     }
 
-    public Cliente(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio, String comuna, int nroTelefono, CuentaCorriente cuentaCorriente) {
+    public Cliente(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio, String comuna, int nroTelefono, CuentaBancaria cuentaBancaria) {
         this.rut = rut;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -83,7 +83,7 @@ public class Cliente {
         this.domicilio = domicilio;
         this.comuna = comuna;
         this.nroTelefono = nroTelefono;
-        this.cuentaCorriente = cuentaCorriente;
+        this.cuentaBancaria = cuentaBancaria;
     }
     
     public void mostrarDatos(){
@@ -94,8 +94,8 @@ public class Cliente {
         System.out.println("Domicilio: " + this.getDomicilio() +"\n");
         System.out.println("Comuna: " + this.getComuna() +"\n");
         System.out.println("Telefono: " + String.valueOf(this.getNroTelefono()) +"\n");
-        System.out.println("Número de cuenta corriente: " + String.valueOf(this.getCuentaCorriente().nroCuenta) +"\n");
-        System.out.println("Saldo: " + String.valueOf(this.getCuentaCorriente().saldo) +"\n");
+        System.out.println("Número de cuenta: " + String.valueOf(this.getCuentaBancaria().nroCuenta) +"\n");
+        System.out.println("Saldo: " + String.valueOf(this.getCuentaBancaria().saldo) +"\n");
     }
 }
 
