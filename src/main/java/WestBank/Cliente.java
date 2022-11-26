@@ -75,7 +75,7 @@ public class Cliente {
         this.cuentaCorriente = cuentaCorriente;
     }
 
-    Cliente(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio, String comuna, int nroTelefono, CuentaCorriente cuentaCorriente) {
+    public Cliente(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio, String comuna, int nroTelefono, CuentaCorriente cuentaCorriente) {
         this.rut = rut;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;

@@ -1,6 +1,8 @@
 package WestBank;
 
-class CuentaCorriente {
+import static java.lang.Integer.parseInt;
+
+public class CuentaCorriente {
 
     int saldo = 0;
     int nroCuenta;
@@ -25,6 +27,10 @@ class CuentaCorriente {
         this.nroCuenta = nroCuenta;
     }
 
+    public CuentaCorriente(String nroCuenta, int tipoCuentaCorriente) {
+        this.nroCuenta = parseInt(nroCuenta, 10);
+    }
+    
     public void mostrarSaldo() {
         System.out.println("Su saldo actual es: " + saldo + "\n");
     }

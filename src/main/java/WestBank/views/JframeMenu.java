@@ -1,10 +1,14 @@
 
 package WestBank.views;
 
-public class JframeMenu extends javax.swing.JFrame {
+import WestBank.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 
-    JInternalFrameRegistro registro = new JInternalFrameRegistro();
-    JInternalFrameBuscar buscar = new JInternalFrameBuscar();
+public class JframeMenu extends javax.swing.JFrame {
+    List<Cliente> clientes = new ArrayList<>();
+    JInternalFrameRegistro registro = new JInternalFrameRegistro(clientes);
+    JInternalFrameBuscar buscar = new JInternalFrameBuscar(clientes);
     JInternalFrameDeposito depositar = new JInternalFrameDeposito();
     JInternalFrameGirar girar = new JInternalFrameGirar();
     JInternalFrameTransferir transferir = new JInternalFrameTransferir();
@@ -39,12 +43,12 @@ public class JframeMenu extends javax.swing.JFrame {
         panelPrincipal = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItemRegistrarCliente = new javax.swing.JMenuItem();
+        jMenuItemVerDatosCliente = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItemDepositar = new javax.swing.JMenuItem();
+        jMenuItemGirar = new javax.swing.JMenuItem();
+        jMenuItemTransferir = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -103,49 +107,49 @@ public class JframeMenu extends javax.swing.JFrame {
 
         jMenu3.setText("Clientes");
 
-        jMenuItem3.setText("Registrar cliente");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemRegistrarCliente.setText("Registrar cliente");
+        jMenuItemRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItemRegistrarClienteActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem3);
+        jMenu3.add(jMenuItemRegistrarCliente);
 
-        jMenuItem4.setText("Ver datos de cliente");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemVerDatosCliente.setText("Ver datos de cliente");
+        jMenuItemVerDatosCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenuItemVerDatosClienteActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem4);
+        jMenu3.add(jMenuItemVerDatosCliente);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Cuentas");
 
-        jMenuItem5.setText("Depositar");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemDepositar.setText("Depositar");
+        jMenuItemDepositar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMenuItemDepositarActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem5);
+        jMenu4.add(jMenuItemDepositar);
 
-        jMenuItem7.setText("Girar");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemGirar.setText("Girar");
+        jMenuItemGirar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                jMenuItemGirarActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem7);
+        jMenu4.add(jMenuItemGirar);
 
-        jMenuItem8.setText("Transferir");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemTransferir.setText("Transferir");
+        jMenuItemTransferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                jMenuItemTransferirActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem8);
+        jMenu4.add(jMenuItemTransferir);
 
         jMenuBar1.add(jMenu4);
 
@@ -178,45 +182,45 @@ public class JframeMenu extends javax.swing.JFrame {
         transferir.setVisible(false);
     }
     
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItemRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarClienteActionPerformed
         registro.setSize(500, 300);
         registro.setTitle ("Registro de Clientes");
         this.panelPrincipal.add(registro);
         closeAllWindows();
         registro.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMenuItemRegistrarClienteActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuItemVerDatosClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerDatosClienteActionPerformed
         buscar.setSize(860, 300);
         buscar.setTitle ("");
         this.panelPrincipal.add(buscar);  
         closeAllWindows();
         buscar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMenuItemVerDatosClienteActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jMenuItemDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDepositarActionPerformed
         depositar.setSize(860, 400);
         depositar.setTitle ("");
         this.panelPrincipal.add(depositar);       
         closeAllWindows();
         depositar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jMenuItemDepositarActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void jMenuItemGirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGirarActionPerformed
         girar.setSize(860, 400);
         girar.setTitle ("");
         this.panelPrincipal.add(girar);       
         closeAllWindows();
         girar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_jMenuItemGirarActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void jMenuItemTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTransferirActionPerformed
         transferir.setSize(860, 400);
         transferir.setTitle ("");
         this.panelPrincipal.add(transferir);     
         closeAllWindows();
         transferir.setVisible(true);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_jMenuItemTransferirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,12 +268,12 @@ public class JframeMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItemDepositar;
+    private javax.swing.JMenuItem jMenuItemGirar;
+    private javax.swing.JMenuItem jMenuItemRegistrarCliente;
+    private javax.swing.JMenuItem jMenuItemTransferir;
+    private javax.swing.JMenuItem jMenuItemVerDatosCliente;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.MenuBar menuBar1;

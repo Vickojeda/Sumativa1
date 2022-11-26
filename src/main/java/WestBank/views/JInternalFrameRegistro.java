@@ -4,17 +4,29 @@
  */
 package WestBank.views;
 
+import WestBank.Cliente;
+import WestBank.CuentaCorriente;
+import WestBank.utils.ValidacionesCliente;
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PROFESOR 16
  */
 public class JInternalFrameRegistro extends javax.swing.JInternalFrame {
-
+    List<Cliente> clientes = new ArrayList<>();
+    ValidacionesCliente validacionCliente = new ValidacionesCliente();
+    
     /**
      * Creates new form JInternalFrameRegistro
+     * @param clientes
      */
-    public JInternalFrameRegistro() {
+    public JInternalFrameRegistro(List<Cliente> clientes) {
         initComponents();
+        this.clientes = clientes;
     }
 
     /**
@@ -71,6 +83,11 @@ public class JInternalFrameRegistro extends javax.swing.JInternalFrame {
         });
 
         jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Apellido Materno");
 
@@ -106,7 +123,12 @@ public class JInternalFrameRegistro extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxCuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuenta Corriente", "Cuenta Rut" }));
+        jComboBoxCuenta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxCuentaItemStateChanged(evt);
+            }
+        });
         jComboBoxCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCuentaActionPerformed(evt);
@@ -148,11 +170,11 @@ public class JInternalFrameRegistro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8)
                         .addComponent(jComboBoxCuenta, 0, 129, Short.MAX_VALUE)
                         .addComponent(jTextNumeroCuenta)
-                        .addComponent(jTextTelefono)))
+                        .addComponent(jTextTelefono)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
@@ -232,6 +254,52 @@ public class JInternalFrameRegistro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCuentaActionPerformed
 
+    private void jComboBoxCuentaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCuentaItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCuentaItemStateChanged
+
+    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
+       String rut = jTextRut.getText();
+       String nombre = jTextNombre.getText();
+       String apellidoPaterno = jTextApellidoPaterno.getText();
+       String apellidoMaterno = jTextApellidoMaterno.getText();
+       String domicilio = jTextDomicilio.getText();
+       String comuna = jTextComuna.getText();
+       String telefono = jTextTelefono.getText();
+       String numeroCuenta = jTextNumeroCuenta.getText();
+       int tipoCuenta = jComboBoxCuenta.getSelectedIndex();
+       
+       String mensajeError = validacionCliente.validacionFormularioRegistro(rut, nombre, apellidoPaterno, apellidoMaterno, domicilio, comuna, telefono, numeroCuenta, tipoCuenta);
+       if(!"".equals(mensajeError)) {
+           JOptionPane.showMessageDialog(rootPane, mensajeError);
+       } else {
+           Cliente cliente = new Cliente(
+                rut,
+                nombre,
+                apellidoPaterno,
+                apellidoMaterno,
+                domicilio,
+                comuna,
+                parseInt(telefono, 10),
+                new CuentaCorriente(numeroCuenta, tipoCuenta));
+           
+           clientes.add(cliente);
+           clearFields();
+           JOptionPane.showMessageDialog(rootPane, "Cliente Ingresado");
+
+       }
+    }//GEN-LAST:event_jButtonRegistrarActionPerformed
+
+    public void clearFields(){
+       jTextRut.setText("");
+       jTextNombre.setText("");
+       jTextApellidoPaterno.setText("");
+       jTextApellidoMaterno.setText("");
+       jTextDomicilio.setText("");
+       jTextComuna.setText("");
+       jTextTelefono.setText("");
+       jTextNumeroCuenta.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegistrar;

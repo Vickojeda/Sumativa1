@@ -4,19 +4,24 @@
  */
 package WestBank.views;
 
+import WestBank.Cliente;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author PROFESOR 16
  */
 public class JInternalFrameBuscar extends javax.swing.JInternalFrame {
-
+List<Cliente> clientes = new ArrayList<>();
     /**
      * Creates new form JInternalFrameBuscar
+     * @param clientes
      */
-    public JInternalFrameBuscar() {
+    public JInternalFrameBuscar(List<Cliente> clientes) {
         initComponents();
         buscarCliente.setBorder(BorderFactory.createLineBorder(Color.black));
         buscarCliente.setSize(200, 200);
@@ -26,6 +31,8 @@ public class JInternalFrameBuscar extends javax.swing.JInternalFrame {
         
         verDatosCuentaCliente.setBorder(BorderFactory.createLineBorder(Color.black));
         verDatosCuentaCliente.setSize(200, 200);
+        
+        this.clientes = clientes;
     }
 
     /**
@@ -310,7 +317,7 @@ public class JInternalFrameBuscar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarClienteActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, clientes.size());
     }//GEN-LAST:event_jButtonBuscarClienteActionPerformed
 
     private void jDomicilioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDomicilioClienteActionPerformed
