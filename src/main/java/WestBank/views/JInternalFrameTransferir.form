@@ -50,7 +50,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel6" pref="231" max="32767" attributes="0"/>
+                      <Component id="jLabelOK" pref="231" max="32767" attributes="0"/>
                       <Component id="jTransferirCuentaOrigen" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTransferiCuentaDestino" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTransferirMonto" alignment="0" max="32767" attributes="0"/>
@@ -84,8 +84,8 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButtonTransferir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                  <Component id="jLabelOK" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -120,10 +120,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTransferirActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#xa1;Transferencia realizada correctamente!"/>
-          </Properties>
+        <Component class="javax.swing.JLabel" name="jLabelOK">
         </Component>
       </SubComponents>
     </Container>

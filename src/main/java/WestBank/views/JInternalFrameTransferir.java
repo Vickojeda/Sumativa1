@@ -1,13 +1,19 @@
 package WestBank.views;
 
 import WestBank.Cliente;
+import WestBank.utils.ValidacionesCuentaBancaria;
 import java.awt.Color;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 public class JInternalFrameTransferir extends javax.swing.JInternalFrame {
+
     List<Cliente> clientes = new ArrayList<>();
+    ValidacionesCuentaBancaria validacionCuentaBancaria = new ValidacionesCuentaBancaria();
+
     /**
      * Creates new form JInternalFrameTransferir
      */
@@ -15,6 +21,7 @@ public class JInternalFrameTransferir extends javax.swing.JInternalFrame {
         initComponents();
         JPanelTransferir.setBorder(BorderFactory.createLineBorder(Color.black));
         JPanelTransferir.setSize(400, 300);
+        this.clientes = clientes;
     }
 
     /**
@@ -34,7 +41,7 @@ public class JInternalFrameTransferir extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jTransferirMonto = new javax.swing.JTextField();
         jButtonTransferir = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelOK = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setText("Ingrese número de cuenta origen");
@@ -50,8 +57,6 @@ public class JInternalFrameTransferir extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("¡Transferencia realizada correctamente!");
-
         javax.swing.GroupLayout JPanelTransferirLayout = new javax.swing.GroupLayout(JPanelTransferir);
         JPanelTransferir.setLayout(JPanelTransferirLayout);
         JPanelTransferirLayout.setHorizontalGroup(
@@ -59,7 +64,7 @@ public class JInternalFrameTransferir extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelTransferirLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(JPanelTransferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                    .addComponent(jLabelOK, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                     .addComponent(jTransferirCuentaOrigen, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTransferiCuentaDestino, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTransferirMonto, javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,8 +94,8 @@ public class JInternalFrameTransferir extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonTransferir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(jLabelOK)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Transferir");
@@ -120,7 +125,30 @@ public class JInternalFrameTransferir extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTransferirActionPerformed
-        // TODO add your handling code here:
+        String cuentaOrigen = jTransferirCuentaOrigen.getText();
+        String cuentaDestino = jTransferiCuentaDestino.getText();
+        String monto = jTransferirMonto.getText();
+        String mensajeError;
+        mensajeError = validacionCuentaBancaria.validarMontoDeposito(monto);
+        mensajeError = mensajeError + validacionCuentaBancaria.validarExisteCuentaBancariaOrigen(clientes, cuentaOrigen);
+        mensajeError = mensajeError + validacionCuentaBancaria.validarCupoCuentaBancariaOrigen(clientes, cuentaOrigen, parseInt(monto));
+        mensajeError = mensajeError + validacionCuentaBancaria.validarTipoCuentaBancariaOrigen(clientes, cuentaOrigen, parseInt(monto));
+        if ("".equals(mensajeError)) {
+            for (Cliente cliente : clientes) {
+                if (Integer.toString(cliente.getCuentaBancaria().getNroCuenta()).equals(cuentaOrigen)) {
+                    cliente.getCuentaBancaria().setSaldo(cliente.getCuentaBancaria().getSaldo() - parseInt(monto)); 
+                    jTransferirCuentaOrigen.setText("");
+                    jTransferiCuentaDestino.setText("");
+                    jTransferirMonto.setText("");
+                    jLabelOK.setText("¡Transferencia realizada correctamente!");
+                } 
+                if (Integer.toString(cliente.getCuentaBancaria().getNroCuenta()).equals(cuentaDestino)) {
+                    cliente.getCuentaBancaria().setSaldo(cliente.getCuentaBancaria().getSaldo() + parseInt(monto)); 
+                } 
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, mensajeError);
+        }
     }//GEN-LAST:event_jButtonTransferirActionPerformed
 
 
@@ -131,7 +159,7 @@ public class JInternalFrameTransferir extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelOK;
     private javax.swing.JTextField jTransferiCuentaDestino;
     private javax.swing.JTextField jTransferirCuentaOrigen;
     private javax.swing.JTextField jTransferirMonto;

@@ -2,7 +2,7 @@ package WestBank.views;
 
 import WestBank.Cliente;
 import WestBank.utils.ValidacionesCliente;
-import WestBank.utils.ValidacionesCuentaCorriente;
+import WestBank.utils.ValidacionesCuentaBancaria;
 import java.awt.Color;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
 
     List<Cliente> clientes = new ArrayList<>();
     ValidacionesCliente validacionCliente = new ValidacionesCliente();
-    ValidacionesCuentaCorriente validacionCuentaCorriente = new ValidacionesCuentaCorriente();
+    ValidacionesCuentaBancaria validacionCuentaBancaria = new ValidacionesCuentaBancaria();
 
     /**
      * Creates new form NewJInternalDeposito
@@ -24,6 +24,7 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
         FrameDeposito.setBorder(BorderFactory.createLineBorder(Color.black));
         FrameDeposito.setSize(200, 200);
         this.clientes = clientes;
+        jLabelMensajeOK.setText("");
     }
 
     /**
@@ -164,9 +165,11 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
         if ("".equals(mensajeError)) {
             boolean existeCliente = false;
             for (Cliente cliente : clientes) {
-                jLabelTipoCuenta.setText(cliente.getCuentaBancaria().getTipo());
-                jTextFieldSaldo.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
-                existeCliente = true;
+                if (cliente.getRut().equals(rut)) {
+                    jLabelTipoCuenta.setText(cliente.getCuentaBancaria().getTipo());
+                    jTextFieldSaldo.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
+                    existeCliente = true;
+                }
             }
             if (!existeCliente) {
                 JOptionPane.showMessageDialog(rootPane, "No existen Cliente ingresado");
@@ -185,17 +188,19 @@ public class JInternalFrameDeposito extends javax.swing.JInternalFrame {
         String rut = jDepositoRut.getText();
         String mensajeError = validacionCliente.validacionRutBusqueda(rut);
         String monto = jDepositoMonto.getText();
-        mensajeError = mensajeError + validacionCuentaCorriente.validarMontoDeposito(monto);
-        
+        mensajeError = mensajeError + validacionCuentaBancaria.validarMontoDeposito(monto);
+
         if ("".equals(mensajeError)) {
             boolean existeCliente = false;
             for (Cliente cliente : clientes) {
-                int nuevoSaldo = cliente.getCuentaBancaria().getSaldo() + parseInt(jDepositoMonto.getText());
-                cliente.getCuentaBancaria().setSaldo(nuevoSaldo);
-                existeCliente = true;
-                jTextFieldSaldo.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
-                jDepositoMonto.setText("");
-                jLabelMensajeOK.setText("¡Deposito realizado correctamente!");
+                if (cliente.getRut().equals(rut)) {
+                    int nuevoSaldo = cliente.getCuentaBancaria().getSaldo() + parseInt(monto);
+                    cliente.getCuentaBancaria().setSaldo(nuevoSaldo);
+                    existeCliente = true;
+                    jTextFieldSaldo.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
+                    jDepositoMonto.setText("");
+                    jLabelMensajeOK.setText("¡Deposito realizado correctamente!");
+                }
             }
             if (!existeCliente) {
                 JOptionPane.showMessageDialog(rootPane, "No existen Cliente ingresado");

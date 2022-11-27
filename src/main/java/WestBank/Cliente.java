@@ -85,17 +85,5 @@ public class Cliente {
         this.nroTelefono = nroTelefono;
         this.cuentaBancaria = cuentaBancaria;
     }
-    
-    public void mostrarDatos(){
-        System.out.println("Rut: " + this.getRut() +"\n");
-        System.out.println("Nombre: " + this.getNombre() +"\n");
-        System.out.println("Apellido Paterno: " + this.getApellidoPaterno() +"\n");
-        System.out.println("Apellido Materno: " + this.getApellidoMaterno() +"\n");
-        System.out.println("Domicilio: " + this.getDomicilio() +"\n");
-        System.out.println("Comuna: " + this.getComuna() +"\n");
-        System.out.println("Telefono: " + String.valueOf(this.getNroTelefono()) +"\n");
-        System.out.println("Número de cuenta: " + String.valueOf(this.getCuentaBancaria().nroCuenta) +"\n");
-        System.out.println("Saldo: " + String.valueOf(this.getCuentaBancaria().saldo) +"\n");
-    }
 }
 

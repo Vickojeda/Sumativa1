@@ -271,7 +271,7 @@ public class JInternalFrameRegistro extends javax.swing.JInternalFrame {
        String numeroCuenta = jTextNumeroCuenta.getText();
        int tipoCuenta = jComboBoxCuenta.getSelectedIndex();
        
-       String mensajeError = validacionCliente.validacionFormularioRegistro(rut, nombre, apellidoPaterno, apellidoMaterno, domicilio, comuna, telefono, numeroCuenta, tipoCuenta);
+       String mensajeError = validacionCliente.validacionFormularioRegistro(rut, nombre, apellidoPaterno, apellidoMaterno, domicilio, comuna, telefono, numeroCuenta, tipoCuenta, clientes);
        if(!"".equals(mensajeError)) {
            JOptionPane.showMessageDialog(rootPane, mensajeError);
        } else {

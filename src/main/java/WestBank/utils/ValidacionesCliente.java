@@ -1,34 +1,12 @@
 package WestBank.utils;
 
+import WestBank.Cliente;
 import static java.lang.Integer.parseInt;
-import java.util.Scanner;
+import java.util.List;
 
 public class ValidacionesCliente {
 
     String mensajeError = "";
-
-    public void validacionRut(String rut, Scanner sn) {
-        while (rut.length() < 11 || rut.length() > 12) {
-            System.out.println("El rut ingresado debe tener entre 11 y 12 caracteres, incluyendo puntos y guion");
-            System.out.println("Ingrese rut:");
-            rut = sn.nextLine();
-        }
-    }
-
-    public int validacionTelefono(Scanner sn) {
-        int nroTelefono = 0;
-        boolean flagTelefono = false;
-        while (!flagTelefono) {
-            System.out.println("Ingrese telefono:");
-            try {
-                nroTelefono = parseInt(sn.nextLine(), 10);
-                return nroTelefono;
-            } catch (NumberFormatException e) {
-                System.out.println("El telefono debe ser un numero:");
-            }
-        }
-        return 0;
-    }
 
     public void validacionRut(String rut) {
         if (rut.length() < 11 || rut.length() > 12) {
@@ -37,6 +15,7 @@ public class ValidacionesCliente {
     }
 
     public void validacionNombre(String nombre) {
+
         if (nombre.length() <= 0) {
             mensajeError = mensajeError + "\n * El campo nombre no puede ser vacio";
         }
@@ -86,17 +65,16 @@ public class ValidacionesCliente {
         }
     }
 
+    public void validacionRutConCuenta(List<Cliente> clientes, String rut) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getRut().equals(rut)) {
+                mensajeError = mensajeError + "\n * El rut ya esta asociado a una cuenta";
+            }
+        }
+    }
+
     public String validacionFormularioRegistro(
-            String rut,
-            String nombre,
-            String apellidoPaterno,
-            String apellidoMaterno,
-            String domicilio,
-            String comuna,
-            String telefono,
-            String numeroCuenta,
-            int tipoCuenta
-    ) {
+            String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio, String comuna, String telefono, String numeroCuenta, int tipoCuenta, List<Cliente> clientes) {
         this.mensajeError = "";
 
         validacionRut(rut);
@@ -107,6 +85,7 @@ public class ValidacionesCliente {
         validacionComuna(comuna);
         validacionTelefono(telefono);
         validacionNroCuenta(numeroCuenta);
+        validacionRutConCuenta(clientes, rut);
 
         return mensajeError;
     }

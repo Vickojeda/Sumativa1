@@ -2,7 +2,7 @@ package WestBank.views;
 
 import WestBank.Cliente;
 import WestBank.utils.ValidacionesCliente;
-import WestBank.utils.ValidacionesCuentaCorriente;
+import WestBank.utils.ValidacionesCuentaBancaria;
 import java.awt.Color;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
 
     List<Cliente> clientes = new ArrayList<>();
     ValidacionesCliente validacionCliente = new ValidacionesCliente();
-    ValidacionesCuentaCorriente validacionCuentaCorriente = new ValidacionesCuentaCorriente();
+    ValidacionesCuentaBancaria validacionCuentaCorriente = new ValidacionesCuentaBancaria();
 
     /**
      * Creates new form JInternalFrameGirar
@@ -159,16 +159,19 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
         if ("".equals(mensajeError)) {
             boolean existeCliente = false;
             for (Cliente cliente : clientes) {
-                if (cliente.getCuentaBancaria().getSaldo() < parseInt(jGirarMonto.getText())) {
-                    JOptionPane.showMessageDialog(rootPane, "El giro supera el monto");
-                } else {
-                    int nuevoSaldo = cliente.getCuentaBancaria().getSaldo() - parseInt(jGirarMonto.getText());
-                    cliente.getCuentaBancaria().setSaldo(nuevoSaldo);
-                    existeCliente = true;
-                    jTextSaldoGiro.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
-                    jGirarMonto.setText("");
-                    jLabelMensajeOK.setText("¡Giro realizado correctamente!");
+                if (cliente.getRut().equals(rut)) {
+                    if (cliente.getCuentaBancaria().getSaldo() < parseInt(jGirarMonto.getText())) {
+                        JOptionPane.showMessageDialog(rootPane, "El giro supera el monto");
+                    } else {
+                        int nuevoSaldo = cliente.getCuentaBancaria().getSaldo() - parseInt(jGirarMonto.getText());
+                        cliente.getCuentaBancaria().setSaldo(nuevoSaldo);
+                        existeCliente = true;
+                        jTextSaldoGiro.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
+                        jGirarMonto.setText("");
+                        jLabelMensajeOK.setText("¡Giro realizado correctamente!");
+                    }
                 }
+
             }
             if (!existeCliente) {
                 JOptionPane.showMessageDialog(rootPane, "No existen Cliente ingresado");
@@ -186,9 +189,11 @@ public class JInternalFrameGirar extends javax.swing.JInternalFrame {
         if ("".equals(mensajeError)) {
             boolean existeCliente = false;
             for (Cliente cliente : clientes) {
-                jLabelTipoCuenta.setText(cliente.getCuentaBancaria().getTipo());
-                jTextSaldoGiro.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
-                existeCliente = true;
+                if (cliente.getRut().equals(rut)) {
+                    jLabelTipoCuenta.setText(cliente.getCuentaBancaria().getTipo());
+                    jTextSaldoGiro.setText(Integer.toString(cliente.getCuentaBancaria().getSaldo()));
+                    existeCliente = true;
+                }
             }
             if (!existeCliente) {
                 JOptionPane.showMessageDialog(rootPane, "No existen Cliente ingresado");
